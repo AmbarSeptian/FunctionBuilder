@@ -14,8 +14,19 @@ struct LayoutBuilder {
         return layout
     }
     
-    static func buildBlock(_ layouts: Layout...) -> Layout {
+    static func buildBlock(_ layouts: Layout...)-> VerticalLayout {
         return VerticalLayout(layout: layouts)
+    }
+    
+    static func buildBlock(_ horizontals: Layout...)-> HorizontalLayout {
+         return HorizontalLayout(layout: horizontals)
+     }
+    
+}
+
+class LayoutSpec: ASWrapperLayoutSpec {
+    convenience init(@LayoutBuilder builder: () -> Layout) {
+        self.init(layoutElement: builder().layoutSpec())
     }
 }
 
@@ -23,8 +34,13 @@ struct LayoutBuilder {
 protocol Layout {
     func layoutSpec() -> ASLayoutElement
 }
+
 extension Layout {
   
+}
+
+struct AnyLayout<T> {
+    
 }
 
 protocol StackLayout: Layout {
@@ -57,11 +73,11 @@ struct VerticalLayout: StackLayout {
         self.stack.children = layout.map { $0.layoutSpec() }
     }
     
-    init(verticalLayout: Layout) {
+    init(verticalLayout: VerticalLayout) {
         self.stack = verticalLayout.layoutSpec() as! ASStackLayoutSpec
     }
     
-    init(@LayoutBuilder builder: () -> Layout) {
+    init(@LayoutBuilder builder: () -> VerticalLayout) {
         self.init(verticalLayout: builder())
     }
     
@@ -97,11 +113,11 @@ struct HorizontalLayout: StackLayout {
         self.stack.children = layout.map { $0.layoutSpec() }
     }
     
-    init(verticalLayout: Layout) {
+    init(verticalLayout: HorizontalLayout) {
         self.stack = verticalLayout.layoutSpec() as! ASStackLayoutSpec
     }
     
-    init(@LayoutBuilder builder: () -> Layout) {
+    init(@LayoutBuilder builder: () -> HorizontalLayout) {
         self.init(verticalLayout: builder())
     }
     
@@ -145,35 +161,28 @@ class TextureBuildView2Controller: ASViewController<ASDisplayNode> {
     }
     
     func asdf() -> ASLayoutSpec {
-        let node1 = ASDisplayNode()
-        node1.backgroundColor = .blue
-        node1.style.preferredSize = CGSize(width: 50, height: 50)
-        
-        let node2 = ASDisplayNode()
-        node2.backgroundColor = .red
-        node2.style.preferredSize = CGSize(width: 50, height: 50)
-        
-        let node3 = ASDisplayNode()
-        node3.backgroundColor = .green
-        node3.style.preferredSize = CGSize(width: 50, height: 50)
-        
-        let node4 = ASDisplayNode()
-        node4.backgroundColor = .orange
-        node4.style.preferredSize = CGSize(width: 50, height: 50)
-        
-        return VerticalLayout {
-            node1
-            node2
-            HorizontalLayout {
-                node3
-                node4
+//        return LayoutSpec {
+            VerticalLayout {
+                nodes[0]
+                nodes[1]
+                HorizontalLayout {
+                    nodes[2]
+                    nodes[3]
+                }
+                .spacing(10)
             }
-            .spacing(5)
-        }
-        .alignItems(.center)
-        .justifyContent(.center)
-        .spacing(40)
-        .build()
+            .spacing(40)
+    .build()
+//        }
     }
+    
+    let nodes: [ASDisplayNode] = {
+        return [#colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1),#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1),#colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1),#colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1)].map { color -> ASDisplayNode in
+            let node = ASDisplayNode()
+            node.backgroundColor = color
+            node.style.preferredSize = CGSize(width: 50, height: 50)
+            return node
+        }
+    }()
     
 }
