@@ -1,0 +1,6 @@
+framework module Pods_FunctionalBuilders {
+  umbrella header "Pods-FunctionalBuilders-umbrella.h"
+
+  export *
+  module * { export * }
+}
