@@ -8,140 +8,57 @@
 
 import AsyncDisplayKit
 
-@_functionBuilder
-struct LayoutBuilder {
-    static func buildExpression(_ layout: Layout) -> Layout {
-        return layout
-    }
-    
-    static func buildBlock(_ layouts: Layout...)-> VerticalLayout {
-        return VerticalLayout(layout: layouts)
-    }
-    
-    static func buildBlock(_ horizontals: Layout...)-> HorizontalLayout {
-         return HorizontalLayout(layout: horizontals)
-     }
-    
+
+struct AnyLayout<T: ASLayoutElement> {
+    let content: T
 }
 
-class LayoutSpec: ASWrapperLayoutSpec {
-    convenience init(@LayoutBuilder builder: () -> Layout) {
-        self.init(layoutElement: builder().layoutSpec())
-    }
-}
-
-
-protocol Layout {
-    func layoutSpec() -> ASLayoutElement
-}
-
-extension Layout {
-  
-}
-
-struct AnyLayout<T> {
-    
-}
-
-protocol StackLayout: Layout {
-
-}
-
-
-extension ASDisplayNode: Layout {
-    func layoutSpec() -> ASLayoutElement {
-        return self
-    }
-    
-}
-
-extension ASStackLayoutSpec: Layout {
-    func layoutSpec() -> ASLayoutElement {
-         return self
-     }
-}
-
-struct VerticalLayout: StackLayout {
-    func layoutSpec() -> ASLayoutElement {
-        return stack
-    }
-    
-    private var stack = ASStackLayoutSpec()
-    
-    init(layout: [Layout]) {
+struct VLayout: LT {
+    let stack: ASStackLayoutSpec
+    init(layouts: [AnyLayout<ASLayoutElement>]) {
         self.stack = ASStackLayoutSpec.vertical()
-        self.stack.children = layout.map { $0.layoutSpec() }
+        stack.children = layouts.map { $0.content }
     }
     
-    init(verticalLayout: VerticalLayout) {
-        self.stack = verticalLayout.layoutSpec() as! ASStackLayoutSpec
+    init(stack: ASStackLayoutSpec) {
+        self.stack = stack
     }
     
-    init(@LayoutBuilder builder: () -> VerticalLayout) {
-        self.init(verticalLayout: builder())
+    init(@LTBuilder builder: () -> VLayout) {
+        self.init(stack: builder().build())
     }
     
-    func spacing(_ spacing: CGFloat) -> Self {
-        self.stack.spacing = spacing
-        return self
-    }
-    
-    func alignItems(_ alignItems: ASStackLayoutAlignItems) -> Self {
-        self.stack.alignItems = alignItems
-        return self
-    }
-    
-    func justifyContent(_ justifyContent: ASStackLayoutJustifyContent) -> Self {
-         self.stack.justifyContent = justifyContent
-         return self
-     }
-    
-    func build() -> ASLayoutSpec {
+    func build() -> ASStackLayoutSpec {
         return stack
     }
 }
 
-struct HorizontalLayout: StackLayout {
-    func layoutSpec() -> ASLayoutElement {
-        return stack
-    }
-    
-    private var stack = ASStackLayoutSpec()
-    
-    init(layout: [Layout]) {
-        self.stack = ASStackLayoutSpec.horizontal()
-        self.stack.children = layout.map { $0.layoutSpec() }
-    }
-    
-    init(verticalLayout: HorizontalLayout) {
-        self.stack = verticalLayout.layoutSpec() as! ASStackLayoutSpec
-    }
-    
-    init(@LayoutBuilder builder: () -> HorizontalLayout) {
-        self.init(verticalLayout: builder())
-    }
-    
-    func spacing(_ spacing: CGFloat) -> Self {
-        self.stack.spacing = spacing
-        return self
-    }
-    
-    func alignItems(_ alignItems: ASStackLayoutAlignItems) -> Self {
-        self.stack.alignItems = alignItems
-        return self
-    }
-    
-    func justifyContent(_ justifyContent: ASStackLayoutJustifyContent) -> Self {
-         self.stack.justifyContent = justifyContent
-         return self
-     }
-    
-    func build() -> ASLayoutSpec {
-        return stack
+protocol LT {
+    associatedtype Element: ASLayoutElement
+    func build() -> Element
+}
+
+extension ASDisplayNode: LT {
+    func build() -> ASDisplayNode {
+        self
     }
 }
 
+@_functionBuilder
+struct LTBuilder {
+    static func buildExpression<ASLayoutElement>(_ layout: AnyLayout<ASLayoutElement>) -> AnyLayout<ASLayoutElement> {
+       return layout
+   }
+    
+     static func buildExpression(_ layout: ASLayoutElement) -> AnyLayout<ASLayoutElement> {
+        return AnyLayout(content: layout)
+    }
+   
+    static func buildBlock(_ layouts: AnyLayout<ASLayoutElement>...)-> VLayout {
+        VLayout(layouts: layouts)
+   }
 
+}
 
 class TextureBuildView2Controller: ASViewController<ASDisplayNode> {
     init() {
@@ -154,6 +71,9 @@ class TextureBuildView2Controller: ASViewController<ASDisplayNode> {
         rootNode.layoutSpecBlock = { _, _ in
             return block
         }
+        
+        let node:AnyLayout<ASLayoutElement> = AnyLayout(content: ASDisplayNode())
+        let asdf: [AnyLayout<ASLayoutElement>] = [node]
     }
     
     required init?(coder: NSCoder) {
@@ -161,19 +81,20 @@ class TextureBuildView2Controller: ASViewController<ASDisplayNode> {
     }
     
     func asdf() -> ASLayoutSpec {
-//        return LayoutSpec {
-            VerticalLayout {
-                nodes[0]
-                nodes[1]
-                HorizontalLayout {
-                    nodes[2]
-                    nodes[3]
-                }
-                .spacing(10)
-            }
-            .spacing(40)
-    .build()
+        let asdf = VLayout {
+            nodes[0]
+            nodes[1]
+        }
+        .build()
+        return asdf
+        
+////            VerticalLayout {
+////                ASDisplayNode()
+////                ASDisplayNode()
+////            }
 //        }
+//        .build()
+
     }
     
     let nodes: [ASDisplayNode] = {

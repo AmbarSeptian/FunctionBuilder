@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		ADBA0F9299BBE66D9175BD00 /* Pods_FunctionalBuilders.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1D0BA1714ECC6925F21AACF /* Pods_FunctionalBuilders.framework */; };
+		E53CF4E4249EA06C00C76B59 /* temp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53CF4E3249EA06C00C76B59 /* temp.swift */; };
 		E56410D22496781E00D92BDC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56410D12496781E00D92BDC /* AppDelegate.swift */; };
 		E56410D62496781E00D92BDC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56410D52496781E00D92BDC /* ViewController.swift */; };
 		E56410DB2496782100D92BDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E56410DA2496782100D92BDC /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 		0B3EB1B5BE081036EABB780E /* Pods-FunctionalBuilders.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FunctionalBuilders.release.xcconfig"; path = "Target Support Files/Pods-FunctionalBuilders/Pods-FunctionalBuilders.release.xcconfig"; sourceTree = "<group>"; };
 		63413C0728E3B01341CFA598 /* Pods-FunctionalBuilders.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FunctionalBuilders.debug.xcconfig"; path = "Target Support Files/Pods-FunctionalBuilders/Pods-FunctionalBuilders.debug.xcconfig"; sourceTree = "<group>"; };
 		C1D0BA1714ECC6925F21AACF /* Pods_FunctionalBuilders.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FunctionalBuilders.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E53CF4E3249EA06C00C76B59 /* temp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = temp.swift; sourceTree = "<group>"; };
 		E56410CE2496781E00D92BDC /* FunctionalBuilders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FunctionalBuilders.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E56410D12496781E00D92BDC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E56410D52496781E00D92BDC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				E56411082496AB5D00D92BDC /* Alert.swift */,
 				E5A8C3CD24995D5D0015B514 /* AttributedStringBuilder.swift */,
 				E5A8C3CF249966070015B514 /* TextureBuilder.swift */,
+				E53CF4E3249EA06C00C76B59 /* temp.swift */,
 				E5A8C3D1249969140015B514 /* TextureBuilderViewController.swift */,
 				E56410DA2496782100D92BDC /* Assets.xcassets */,
 				E56410DC2496782100D92BDC /* LaunchScreen.storyboard */,
@@ -216,6 +219,7 @@
 				E5A8C3CE24995D5D0015B514 /* AttributedStringBuilder.swift in Sources */,
 				E5A8C3D0249966070015B514 /* TextureBuilder.swift in Sources */,
 				E56410D22496781E00D92BDC /* AppDelegate.swift in Sources */,
+				E53CF4E4249EA06C00C76B59 /* temp.swift in Sources */,
 				E5A8C3D2249969140015B514 /* TextureBuilderViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
