@@ -10,10 +10,11 @@ import AsyncDisplayKit
 
 class TextureBuilderViewController: ASViewController<ASDisplayNode> {
     let nodes: [ASDisplayNode] = {
-        return [#colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1),#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1),#colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1),#colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1)].map { color -> ASDisplayNode in
+        return [#colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1),#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1),#colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1),#colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1)].enumerated().map { index, color -> ASDisplayNode in
             let node = ASDisplayNode()
             node.backgroundColor = color
             node.style.preferredSize = CGSize(width: 50, height: 50)
+            node.accessibilityIdentifier = "color - \(index)"
             return node
         }
     }()
@@ -69,10 +70,11 @@ class TextureBuilderViewController: ASViewController<ASDisplayNode> {
         toggleCheckmarkButton.addTarget(self,
                                         action: #selector(self.toggleCheckmark(_:)),
                                         forControlEvents: .touchUpInside)
+         
         
         rootNode.layoutSpecBlock = { [weak self] _, _ in
             guard let self = self else { return ASLayoutSpec() }
-            return self.nativeTextureLayoutSpec()
+//            return self.nativeTextureLayoutSpec()
             return VLayout {
                 self.nodes[0]
                 self.nodes[1]
@@ -102,19 +104,6 @@ class TextureBuilderViewController: ASViewController<ASDisplayNode> {
             .spacing(20)
             .justifyContent(.center)
             .build()
-        }
-        
-        let asdf = VLayout {
-            nodes[0]
-            nodes[1]
-            HLayout {
-                nodes[1]
-                nodes[1]
-            }
-            if self.isShowCheckmark {
-                nodes[3]
-                nodes[3]
-            }
         }
     }
     
@@ -162,6 +151,5 @@ class TextureBuilderViewController: ASViewController<ASDisplayNode> {
         
         return verticalStack
     }
-    
 }
 

@@ -20,6 +20,8 @@ protocol Layout {
 
 protocol StackLayout: Layout {
     var stack: ASStackLayoutSpec { get }
+    init(stack: ASStackLayoutSpec)
+    init(layouts: [AnyLayout<ASLayoutElement>])
 }
 
 extension StackLayout {
@@ -40,7 +42,7 @@ extension StackLayout {
 }
 
 
-struct VLayout: StackLayout {
+struct VLayout: StackLayout, Layout {
     let stack: ASStackLayoutSpec
     init(layouts: [AnyLayout<ASLayoutElement>]) {
         self.stack = ASStackLayoutSpec.vertical()
@@ -60,7 +62,7 @@ struct VLayout: StackLayout {
     }
 }
 
-struct HLayout: StackLayout {
+struct HLayout: StackLayout, Layout {
     let stack: ASStackLayoutSpec
     init(layouts: [AnyLayout<ASLayoutElement>]) {
         self.stack = ASStackLayoutSpec.horizontal()
@@ -80,7 +82,6 @@ struct HLayout: StackLayout {
     }
 }
 
-
 @_functionBuilder
 struct LayoutBuilder {
     
@@ -93,38 +94,42 @@ struct LayoutBuilder {
           HLayout(layouts: layouts)
      }
     
+    static func buildBlock(_ layout: AnyLayout<ASLayoutElement>)-> AnyLayout<ASLayoutElement> {
+         layout
+    }
+    
     // MARK: Build Expression
     static func buildExpression(_ layout: AnyLayout<ASLayoutElement>) -> AnyLayout<ASLayoutElement> {
-       return layout
+       layout
    }
     
      static func buildExpression(_ layout: ASLayoutElement) -> AnyLayout<ASLayoutElement> {
-        return AnyLayout(content: layout)
+        AnyLayout(content: layout)
     }
     
     static func buildExpression(_ layout: HLayout) -> AnyLayout<ASLayoutElement> {
-        return AnyLayout(content: layout.build())
+        AnyLayout(content: layout.build())
     }
     
     static func buildExpression(_ layout: VLayout) -> AnyLayout<ASLayoutElement> {
-        return AnyLayout(content: layout.build())
+        AnyLayout(content: layout.build())
     }
     
     // MARK: Build If
-    static func buildIf(_ layout: VLayout?)-> AnyLayout<ASLayoutElement> {
-        if let layoutSpec = layout?.build() {
-            return AnyLayout(content: layoutSpec)
+    static func buildIf(_ layout: AnyLayout<ASLayoutElement>?)-> AnyLayout<ASLayoutElement> {
+        if let layoutSpec = layout {
+            return layoutSpec
         }
-        
+
         return AnyLayout(content: ASLayoutSpec())
     }
     
-    
-    static func buildEither(first layout: VLayout)-> AnyLayout<ASLayoutElement> {
-        return AnyLayout(content: layout.build())
+    static func buildEither(first layout: AnyLayout<ASLayoutElement>)-> AnyLayout<ASLayoutElement> {
+        layout
     }
     
-    static func buildEither(second layout: VLayout)-> AnyLayout<ASLayoutElement> {
-        return AnyLayout(content: layout.build())
+    static func buildEither(second layout: AnyLayout<ASLayoutElement>)-> AnyLayout<ASLayoutElement> {
+        layout
     }
+    
 }
