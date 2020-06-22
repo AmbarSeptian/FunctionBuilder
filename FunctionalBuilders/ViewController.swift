@@ -20,28 +20,27 @@ class ViewController: UIViewController {
             "Folder"
             if flag {
                 UIImage(named: "folder")!
-//               NSAttributedString {
-//                   "Folder "
-//
-////                    Link(url: "https://google.com", label: "Google")
-//               }
+               NSAttributedString {
+                   "Folder "
+                    Link(url: "https://google.com", label: "Google")
+               }
             }
             
-//            NSAttributedString {
-//                "Folder "
-//                UIImage(named: "folder")!
-//            }
-//
-//            " - "
-//
-//            NSAttributedString {
-//                "Document "
-//                UIImage(named: "doc")!
-//            }
-//            .withAttributes([
-//                .font: UIFont.systemFont(ofSize: 14),
-//                .foregroundColor: UIColor.red
-//            ])
+            NSAttributedString {
+                "Folder "
+                UIImage(named: "folder")!
+            }
+
+            " - "
+
+            NSAttributedString {
+                "Document "
+                UIImage(named: "doc")!
+            }
+            .withAttributes([
+                .font: UIFont.systemFont(ofSize: 14),
+                .foregroundColor: UIColor.red
+            ])
         }
         
 //        label.attributedText = text
