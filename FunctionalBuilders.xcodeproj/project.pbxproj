@@ -10,13 +10,13 @@
 		ADBA0F9299BBE66D9175BD00 /* Pods_FunctionalBuilders.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1D0BA1714ECC6925F21AACF /* Pods_FunctionalBuilders.framework */; };
 		E53CF4E6249EC02300C76B59 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53CF4E5249EC02300C76B59 /* MenuViewController.swift */; };
 		E56410D22496781E00D92BDC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56410D12496781E00D92BDC /* AppDelegate.swift */; };
-		E56410D62496781E00D92BDC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56410D52496781E00D92BDC /* ViewController.swift */; };
+		E56410D62496781E00D92BDC /* AttributeStringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56410D52496781E00D92BDC /* AttributeStringViewController.swift */; };
 		E56410DB2496782100D92BDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E56410DA2496782100D92BDC /* Assets.xcassets */; };
 		E56410DE2496782100D92BDC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56410DC2496782100D92BDC /* LaunchScreen.storyboard */; };
-		E56411092496AB5D00D92BDC /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56411082496AB5D00D92BDC /* Alert.swift */; };
 		E5A8C3CE24995D5D0015B514 /* AttributedStringBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A8C3CD24995D5D0015B514 /* AttributedStringBuilder.swift */; };
 		E5A8C3D0249966070015B514 /* TextureBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A8C3CF249966070015B514 /* TextureBuilder.swift */; };
 		E5A8C3D2249969140015B514 /* TextureBuilderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A8C3D1249969140015B514 /* TextureBuilderViewController.swift */; };
+		E5C827F224A3ECDC001B8AFA /* AlternativeStringBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C827F124A3ECDC001B8AFA /* AlternativeStringBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,14 +26,14 @@
 		E53CF4E5249EC02300C76B59 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		E56410CE2496781E00D92BDC /* FunctionalBuilders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FunctionalBuilders.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E56410D12496781E00D92BDC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E56410D52496781E00D92BDC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E56410D52496781E00D92BDC /* AttributeStringViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributeStringViewController.swift; sourceTree = "<group>"; };
 		E56410DA2496782100D92BDC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E56410DD2496782100D92BDC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E56410DF2496782100D92BDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E56411082496AB5D00D92BDC /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		E5A8C3CD24995D5D0015B514 /* AttributedStringBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedStringBuilder.swift; sourceTree = "<group>"; };
 		E5A8C3CF249966070015B514 /* TextureBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureBuilder.swift; sourceTree = "<group>"; };
 		E5A8C3D1249969140015B514 /* TextureBuilderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureBuilderViewController.swift; sourceTree = "<group>"; };
+		E5C827F124A3ECDC001B8AFA /* AlternativeStringBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlternativeStringBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,9 +87,9 @@
 			isa = PBXGroup;
 			children = (
 				E56410D12496781E00D92BDC /* AppDelegate.swift */,
-				E56410D52496781E00D92BDC /* ViewController.swift */,
-				E56411082496AB5D00D92BDC /* Alert.swift */,
+				E56410D52496781E00D92BDC /* AttributeStringViewController.swift */,
 				E5A8C3CD24995D5D0015B514 /* AttributedStringBuilder.swift */,
+				E5C827F124A3ECDC001B8AFA /* AlternativeStringBuilder.swift */,
 				E5A8C3CF249966070015B514 /* TextureBuilder.swift */,
 				E5A8C3D1249969140015B514 /* TextureBuilderViewController.swift */,
 				E53CF4E5249EC02300C76B59 /* MenuViewController.swift */,
@@ -214,12 +214,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E56411092496AB5D00D92BDC /* Alert.swift in Sources */,
-				E56410D62496781E00D92BDC /* ViewController.swift in Sources */,
+				E56410D62496781E00D92BDC /* AttributeStringViewController.swift in Sources */,
 				E5A8C3CE24995D5D0015B514 /* AttributedStringBuilder.swift in Sources */,
 				E53CF4E6249EC02300C76B59 /* MenuViewController.swift in Sources */,
 				E5A8C3D0249966070015B514 /* TextureBuilder.swift in Sources */,
 				E56410D22496781E00D92BDC /* AppDelegate.swift in Sources */,
+				E5C827F224A3ECDC001B8AFA /* AlternativeStringBuilder.swift in Sources */,
 				E5A8C3D2249969140015B514 /* TextureBuilderViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
