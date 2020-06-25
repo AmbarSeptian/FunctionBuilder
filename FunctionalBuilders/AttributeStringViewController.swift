@@ -138,17 +138,17 @@ class AttributeStringViewController: UIViewController {
         label.frame = CGRect(x: 20,
                              y: 20,
                              width: view.bounds.width - 40,
-                             height: 500)
+                             height: 400)
         toggleLinkButton.frame = CGRect(x: 0,
-                                        y: 500,
+                                        y: 450,
                                         width: view.bounds.width,
                                         height: 50)
         toggleMemeButton.frame = CGRect(x: 0,
-                                        y: 550,
+                                        y: 500,
                                         width: view.bounds.width,
                                         height: 50)
         toggleAlternativeButton.frame = CGRect(x: 0,
-                                               y: 600,
+                                               y: 550,
                                                width: view.bounds.width,
                                                height: 50)
     }
